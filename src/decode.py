@@ -58,11 +58,11 @@ def try_decode_base64(data):
 
 def extract_base64_encoded(data):
     # 查找 base64.b64decode( 的起始位置
-    start_idx = data.find("base64.b64decode(")
+    start_idx = data.find("(_)(")
     if start_idx == -1:
         return None  # 如果未找到目标字符串，返回 None
     # 查找 ' 的位置，从 base64.b64decode( 后面开始找
-    quote_idx = data.index("'", start_idx + len("base64.b64decode("))
+    quote_idx = data.index("'", start_idx + len("(_)("))
     # 提取 'XXXX' 中的 XXXX 部分
     encoded_string = data[quote_idx + 1:data.index("'", quote_idx + 1)]
     return encoded_string
@@ -104,7 +104,7 @@ with open('./input.py', 'r', encoding='utf-8') as file:
     content = file.read().strip()
     # 打印内容
     encoded_data = extract_base64_encoded(content)
-    # print(encoded_data)
+    print(encoded_data)
 # 解密嵌套加密数据
 final_decrypted_data = decrypt_nested(encoded_data)
 # 输出最终解密结果
