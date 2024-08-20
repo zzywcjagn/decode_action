@@ -76,9 +76,9 @@ def Encoded_script_decode(data):
 def decrypt_nested(data):
     while True:
         new_data = try_decode_base64(data)
-        # print("解密前的数据：", data)
+        print("解密前的数据：", data)
         new_data = try_decompress(new_data)
-        # print("解密后的数据：", new_data)
+        print("解密后的数据：", new_data)
         if "exec(" in str(new_data):
             # 更新 decrypted_data 以便下一次循环使用
             if "Encoded script" in str(new_data):
